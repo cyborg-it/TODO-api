@@ -4,3 +4,10 @@ export const demoReducerAction = (data) => {
         payload:data
     }
 }
+
+export const entryDataReducerAction = (data) => {
+    return {
+        type:"SET_ENTRY_DATA",
+        payload:data
+    }
+}
