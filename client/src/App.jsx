@@ -1,25 +1,25 @@
 import './App.css';
-import EntryForm from './components/EntryForm';
-import TodoList from './components/TodoList';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import FrontPage from './pages/FrontPage';
+import CreateTodoPage from './pages/CreateTodoPage';
+import CreateTodosPage from './pages/CreateTodosPage';
 
 const App = () => {
   return (
-    <div className="container text-center mt-5">
-      <h1 className="m-5">TODO app</h1>
-      <div className="row">
-        <div className="col-xl-6">
-            <h4 className="m-5">create todo</h4>
-            <EntryForm></EntryForm>
-            <EntryForm></EntryForm>
-            <button className="btn btn-danger m-2">add more list</button>
-        </div>
-        <div className="col-xl-6">
-          <TodoList></TodoList>
-        </div>
-      </div>
-
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <FrontPage></FrontPage>
+        </Route>
+        <Route exact path="/todo/create">
+          <CreateTodoPage></CreateTodoPage>
+        </Route>
+        <Route exact path="/todo/create/multiple">
+          <CreateTodosPage></CreateTodosPage>
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App;

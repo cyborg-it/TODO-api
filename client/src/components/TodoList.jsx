@@ -30,11 +30,8 @@ const TodoList = () => {
     })
     return (
         <div className="card">
-            <h4 className="m-5">
-                List of TODO's
-            </h4>
             <div>
-                <table className="table table-borderless">
+                <table className="table table-borderless text-center">
                     <thead>
                         <tr>
                             <th scope="col">Title</th>
