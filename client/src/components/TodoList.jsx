@@ -1,14 +1,40 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import SingleTodo from './SingleTodo'
+import {todoListReducerAction} from '../actions/index'
+import { useDispatch, useSelector } from 'react-redux'
+const SERVER_API = process.env.REACT_APP_SERVER_API
+
 
 const TodoList = () => {
+    const dispatch = useDispatch()
+    const todoList = useSelector(state => state.todoList)
+    
+    useEffect(() => {
+        const getTodoList = async () => {
+            try{
+                let result = await axios.get(`${SERVER_API}/todo/list`)
+                dispatch(todoListReducerAction(result.data))
+            }
+            catch(error) {
+                console.error(error)
+            }
+        }
+        getTodoList()
+    },[])
+
+    console.log(todoList)
+
+    const renderTodoList = todoList.map((todo) => {
+        return <SingleTodo data={todo}></SingleTodo>
+    })
     return (
         <div className="card">
             <h4 className="m-5">
                 List of TODO's
-</h4>
+            </h4>
             <div>
-                <table class="table table-borderless">
+                <table className="table table-borderless">
                     <thead>
                         <tr>
                             <th scope="col">Title</th>
@@ -18,9 +44,7 @@ const TodoList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <SingleTodo></SingleTodo>
-                        <SingleTodo></SingleTodo>
-                        <SingleTodo></SingleTodo>
+                        {renderTodoList}
                     </tbody>
                 </table>
             </div>

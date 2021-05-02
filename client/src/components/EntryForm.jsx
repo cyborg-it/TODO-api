@@ -1,35 +1,47 @@
 import React from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import {entryDataReducerAction} from '../actions/index'
+import axios from 'axios'
+import {entryTitleDataReducerAction,entryDescriptionDataReducerAction} from '../actions/index'
+const SERVER_API = process.env.REACT_APP_SERVER_API
 
 const EntryForm = () => {
     const dispatch = useDispatch()
-    const entryData = useSelector(state => state.entryData)
+    const title = useSelector(state => state.title)
+    const description = useSelector(state => state.description)
 
     const titleChangeHandler = (event) => {
         event.preventDefault()
-        dispatch(entryDataReducerAction({
-            title : event.target.value
-        }))
+        dispatch(entryTitleDataReducerAction( event.target.value
+        ))
     }
 
     const descriptionChangeHandler = (event) => {
         event.preventDefault()
-        dispatch(entryDataReducerAction({
-            description : event.target.value
-        }))
+        dispatch(entryDescriptionDataReducerAction(
+            event.target.value
+        ))
         
     } 
 
-    const submitData = (event) => {
+    const submitData = async (event) => {
         event.preventDefault()
-        console.log(entryData)
+        const data = {
+            title,
+            description
+        };
+
+        try{
+            const result = await axios.post(`${SERVER_API}/todo/create`,data)
+            console.log(result.data)
+            
+        }catch(error) {
+            console.error(error)
+        }
     }
 
     return (
-        <div className="card">
-            <h4 className="m-5">Create a TODO</h4>
-            <form action="" onSubmit={submitData}>
+        <div className="card mb-2">
+            <form action="" onSubmit={submitData} class="m-5">
                 <div className="container">
                     <div className="mb-3">
                         <input type="text" name="title" className="form-control" placeholder="title" onChange={titleChangeHandler} />
@@ -37,7 +49,7 @@ const EntryForm = () => {
                     <div className="mb-3">
                         <input type="text" name="desctiption" className="form-control" placeholder="description" onChange={descriptionChangeHandler} />
                     </div>
-                    <div className="mb-3">
+                    <div>
                         <input type="submit" className="form-control btn btn-danger" placeholder="description" />
                     </div>
                 </div>

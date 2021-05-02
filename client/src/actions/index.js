@@ -5,9 +5,23 @@ export const demoReducerAction = (data) => {
     }
 }
 
-export const entryDataReducerAction = (data) => {
+export const entryTitleDataReducerAction = (data) => {
     return {
-        type:"SET_ENTRY_DATA",
+        type:"SET_ENTRY_TITLE_DATA",
+        payload:data
+    }
+}
+
+export const entryDescriptionDataReducerAction = (data) => {
+    return {
+        type:"SET_ENTRY_DESCRIPTION_DATA",
+        payload:data
+    }
+}
+
+export const todoListReducerAction = (data) => {
+    return {
+        type:"GET_TODO_LIST",
         payload:data
     }
 }

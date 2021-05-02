@@ -1,10 +1,14 @@
 import { combineReducers } from "redux";
 import demoReducer from "./demoReducer"
-import entryDataReducer from './entryDataReducer'
+import {entryTitleDataReducer,entryDescriptionDataReducer} from './entryDataReducer'
+
+import {todoListReducer} from './todoReducer'
 
 const allReducers = combineReducers({
     demoOne:demoReducer,
-    entryData:entryDataReducer
+    title:entryTitleDataReducer,
+    description:entryDescriptionDataReducer,
+    todoList:todoListReducer
 })
 
 export default allReducers;
