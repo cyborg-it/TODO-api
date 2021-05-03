@@ -2,12 +2,14 @@ import React from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import axios from 'axios'
 import {entryTitleDataReducerAction,entryDescriptionDataReducerAction} from '../actions/index'
+import {useHistory} from 'react-router-dom'
 const SERVER_API = process.env.REACT_APP_SERVER_API
 
 const EntryForm = () => {
     const dispatch = useDispatch()
     const title = useSelector(state => state.title)
     const description = useSelector(state => state.description)
+    const history = useHistory();
 
     const titleChangeHandler = (event) => {
         event.preventDefault()
@@ -19,8 +21,7 @@ const EntryForm = () => {
         event.preventDefault()
         dispatch(entryDescriptionDataReducerAction(
             event.target.value
-        ))
-        
+        ))   
     } 
 
     const submitData = async (event) => {
@@ -32,7 +33,10 @@ const EntryForm = () => {
 
         try{
             const result = await axios.post(`${SERVER_API}/todo/create`,data)
-            console.log(result.data)
+            
+            if(result) {
+                history.push("/");
+            }
             
         }catch(error) {
             console.error(error)

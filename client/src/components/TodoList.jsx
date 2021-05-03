@@ -27,7 +27,8 @@ const TodoList = () => {
 
     const renderTodoList = todoList.map((todo) => {
         return <SingleTodo data={todo}></SingleTodo>
-    })
+    });
+    
     return (
         <div className="card">
             <div>
