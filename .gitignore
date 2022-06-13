@@ -1,3 +1,4 @@
-/node_modules
-/todo_db
+api/node_modules
+dev-database/todo_db
+test-database/todo_test_db
 .env
