@@ -1,0 +1,12 @@
+version: '2'
+services:
+  mongo:
+    container_name: todo-db
+    image: mongo
+    volumes:
+      - "./todo_db:/data/db"
+    restart: always
+    ports:
+      - "27017:27017"
+    expose:
+      - 27017
