@@ -1,0 +1,38 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking"
+	],
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"max-len": [
+			"error",
+			{
+				"code": 500
+			}
+		],
+		"no-console": ["error", { "allow": ["info", "warn", "error"] }],
+		"no-extra-boolean-cast": 0,
+		"@typescript-eslint/restrict-plus-operands": 0,
+		"@typescript-eslint/explicit-module-boundary-types": 0,
+		"@typescript-eslint/no-explicit-any": 0,
+		"@typescript-eslint/no-floating-promises": 0,
+		"@typescript-eslint/no-unsafe-member-access": 0,
+		"@typescript-eslint/no-unsafe-assignment": 0,
+		"@typescript-eslint/no-unsafe-call": 0,
+		"@typescript-eslint/no-var-requires": 0,
+		"@typescript-eslint/no-unsafe-return": 0,
+		"@typescript-eslint/no-unsafe-argument": 0,
+		"@typescript-eslint/no-misused-promises": 0,
+		"@typescript-eslint/restrict-template-expressions": 0,
+		"@typescript-eslint/require-await": "warn",
+		"no-mixed-spaces-and-tabs": 0,
+		"@typescript-eslint/no-this-alias": 0,
+		"@typescript-eslint/no-empty-function": 0,
+		"no-case-declarations": 0
+	}
+}
