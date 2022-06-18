@@ -45,12 +45,12 @@ router.get('/find/:id', async (req: Request, res: Response) => {
 })
 
 
-router.patch('/update', async (req: Request, res: Response) => {
+router.patch('/update/:id', async (req: Request, res: Response) => {
 	const {id} = req.params;
 	try {
 		const response = await todoService.updateTodo(id, req.body);
 		log.info('TODO all data ...');
-		if (response) res.status(200).json(responseHandler(200, 'all list TODO api', response));
+		if (response) res.status(200).json(responseHandler(200, 'update TODO api', response));
 	} catch (error) {
 		log.error(error);
 		res.status(400).json(responseHandler(400, 'something went wrong', error));
@@ -58,10 +58,21 @@ router.patch('/update', async (req: Request, res: Response) => {
 })
 
 
-router.delete('/delete', async (req: Request, res: Response) => {
+router.delete('/delete/:id', async (req: Request, res: Response) => {
 	const {id} = req.params;
 	try {
 		const response = await todoService.deleteTodo(id);
+		log.info('TODO delete data ...');
+		if (response) res.status(200).json(responseHandler(200, 'delete TODO api', response));
+	} catch (error) {
+		log.error(error);
+		res.status(400).json(responseHandler(400, 'something went wrong', error));
+	}
+})
+
+router.delete('/delete-all', async (req: Request, res: Response) => {
+	try {
+		const response = await todoService.deleteAllTodos();
 		log.info('TODO delete data ...');
 		if (response) res.status(200).json(responseHandler(200, 'delete TODO api', response));
 	} catch (error) {

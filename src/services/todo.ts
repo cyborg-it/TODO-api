@@ -29,6 +29,10 @@ class Todo {
             new: true
         })
     }
+
+    async deleteAllTodos() {
+        return await todoModel.deleteMany()
+    }
 }
 
 export default new Todo();
