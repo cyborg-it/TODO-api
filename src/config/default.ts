@@ -2,6 +2,7 @@ export default {
 	port: 3303,
 	host: 'localhost',
 	dbUri: 'mongodb://localhost:27017/todo-db',
+	testDbUri: 'mongodb://localhost:27017/todo-test-db'
 	// saltWorkFactor: 10,
 	// accessTokenTtl: "15m",
 	// refreshTokenTtl: "1y",
