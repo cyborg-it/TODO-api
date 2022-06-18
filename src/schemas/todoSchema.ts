@@ -1,17 +1,12 @@
-import mongoose from 'mongoose';
+import { object, string, bool } from 'yup';
 
-const TodoSchema = new mongoose.Schema(
-	{
-		task: {
-			task: String,
-			required: true,
-			unique: true,
-		},
-		done: {
-			type: Boolean,
-		},
-	},
-	{ timestamps: true }
-);
+const payload = {
+	body: object({
+		task: string().required('task name is required'),
+		done: bool().required('is completed or not flag is required'),
+	}),
+};
 
-export default TodoSchema;
+export const createTodoSchama = object({
+	...payload,
+});
