@@ -2,3 +2,4 @@ node_modules
 dev-database/todo_db
 test-database/todo_test_db
 .env
+todo_db
